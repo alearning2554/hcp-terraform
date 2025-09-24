@@ -1,7 +1,6 @@
 provider "google" {
   project = "windy-skyline-467604-b5"   # Replace with your Google Cloud project ID
   region  = "us-central1"            # Replace with your desired region
-  
 }
 
 terraform {
