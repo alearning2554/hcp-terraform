@@ -3,6 +3,16 @@ provider "google" {
   region  = "us-central1"            # Replace with your desired region
 }
 
+terraform {
+  required_providers {
+    google = {
+      source  = "hashicorp/google"
+      version = ">= 4.0"
+    }
+  }
+}
+
+
 resource "google_storage_bucket" "example_bucket" {
   name          = "hcp-terraform-123"  # Replace with a unique bucket name
   location      = "US"                     # You can change the location to suit your needs
