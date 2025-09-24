@@ -1,6 +1,13 @@
 provider "google" {
   project = "windy-skyline-467604-b5"   # Replace with your Google Cloud project ID
   region  = "us-central1"            # Replace with your desired region
+  credentials = var.google_credentials
+}
+
+variable "google_credentials" {
+  description = "Service account JSON key"
+  type        = string
+  sensitive   = true
 }
 
 terraform {
