@@ -37,6 +37,6 @@ data "terraform_remote_state" "bucket" {
 }
 
 output "bucket_id_from_remote" {
-  value = data.terraform_remote_state.bucket.outputs
+  value = data.terraform_remote_state.bucket.outputs.bucket_id
 }
 
