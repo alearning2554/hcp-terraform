@@ -1,15 +1,16 @@
 name: Terraform CI
 
 on:
-  push:
+  pull_request:
+    types: [opened, reopened]
     branches:
-      - main
+      - 'main'
 
 jobs:
   terraform:
     runs-on: ubuntu-latest
     env:
-      TF_API_TOKEN: ${{ secrets.TF_API_TOKEN }}
+      TF_API_TOKEN: ${{ secrets.HCP_API_TOKEN }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
