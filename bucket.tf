@@ -25,18 +25,18 @@ output "bucket_id" {
   value = google_storage_bucket.example_bucket.url
 }
 
-data "terraform_remote_state" "bucket" {
-  backend = "remote"
+#data "terraform_remote_state" "bucket" {
+#  backend = "remote"
 
-  config = {
-    organization = "vijay-dev"
-    workspaces = {
-      name = "dev"
-    }
-  }
-}
+#  config = {
+#    organization = "vijay-dev"
+#    workspaces = {
+#      name = "dev"
+#    }
+#  }
+#}
 
-output "bucket_id_from_remote" {
-  value = data.terraform_remote_state.bucket.outputs.bucket_id
-}
+#output "bucket_id_from_remote" {
+#  value = data.terraform_remote_state.bucket.outputs.bucket_id
+#}
 
