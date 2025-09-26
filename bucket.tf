@@ -31,7 +31,6 @@ data "terraform_remote_state" "bucket" {
   config = {
     organization = "vijay-dev"
     workspaces = {
-      project = "vijay-dev"
       name = "dev"
     }
   }
