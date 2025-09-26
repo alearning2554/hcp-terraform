@@ -21,6 +21,10 @@ resource "google_storage_bucket" "example_bucket" {
   force_destroy = true                     # This allows Terraform to delete non-empty buckets (be careful!)
 }
 
+output "bucket_id" {
+  value = google_storage_bucket.example_bucket.url
+}
+
 data "terraform_remote_state" "bucket" {
   backend = "remote"
 
