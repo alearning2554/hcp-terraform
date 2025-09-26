@@ -20,3 +20,19 @@ resource "google_storage_bucket" "example_bucket" {
   storage_class = "STANDARD"               # You can use different storage classes like "NEARLINE", "COLDLINE", etc.
   force_destroy = true                     # This allows Terraform to delete non-empty buckets (be careful!)
 }
+
+data "terraform_remote_state" "bucket" {
+  backend = "remote"
+
+  config = {
+    organization = "vijay-dev"
+    workspaces = {
+      name = "dev"
+    }
+  }
+}
+
+output "bucket_id_from_remote" {
+  value = data.terraform_remote_state.bucket.outputs.bucket_id
+}
+
