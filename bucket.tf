@@ -10,6 +10,13 @@ terraform {
       version = ">= 4.0"
     }
   }
+  backend "remote" {
+    organization = "vijay-dev"
+
+    workspaces {
+      name = "githubactions"
+    }
+  }
 }
 
 
