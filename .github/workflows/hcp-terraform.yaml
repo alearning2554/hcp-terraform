@@ -5,9 +5,13 @@ on:
     types: [opened, reopened]
     branches:
       - 'main'
+  push:
+    branches:
+      - 'main'
 
 jobs:
-  terraform:
+  plan:
+    if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
     env:
       TF_TOKEN_app_terraform_io: ${{ secrets.HCP_API_TOKEN }}
@@ -25,3 +29,23 @@ jobs:
 
       - name: Terraform Plan
         run: terraform plan
+  apply: 
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    runs-on: ubuntu-latest
+    environment: production
+    env:
+      TF_TOKEN_app_terraform_io: ${{ secrets.HCP_API_TOKEN }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.7.5
+
+      - name: Terraform Init
+        run: terraform init
+
+      - name: Terraform Apply (via HCP)
+        run: terraform apply -auto-approve
