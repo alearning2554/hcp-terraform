@@ -11,7 +11,7 @@ on:
 
 jobs:
   plan:
-    if: github.event_name == 'pull_request'
+    if: always()
     runs-on: ubuntu-latest
     env:
       TF_TOKEN_app_terraform_io: ${{ secrets.HCP_API_TOKEN }}
