@@ -33,6 +33,7 @@ jobs:
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
     runs-on: ubuntu-latest
     environment: production
+    needs: [plan]
     env:
       TF_TOKEN_app_terraform_io: ${{ secrets.HCP_API_TOKEN }}
     steps:
