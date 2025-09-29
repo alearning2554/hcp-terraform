@@ -33,7 +33,6 @@ jobs:
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
     runs-on: ubuntu-latest
     environment: production
-    needs: [plan]
     env:
       TF_TOKEN_app_terraform_io: ${{ secrets.HCP_API_TOKEN }}
     steps:
@@ -48,5 +47,8 @@ jobs:
       - name: Terraform Init
         run: terraform init
 
-      - name: Terraform Apply (via HCP)
+      - name: Terraform Plan
+        run: terraform plan
+
+      - name: Terraform Apply
         run: terraform apply -auto-approve
